@@ -44,8 +44,13 @@ server <- function(input, output) {
           return(NULL) }
       
       network_plot <- coocurNet(inFile$datapath)
+      network_plot2 <- as.undirected(network_plot)
       par(mar=c(1,1,1,1))
-      plot(network_plot, vertex.color = 'gold', vertex.size = 7, vertex.frame.color = 'white', layout = layout_with_fr, edge.color = 'darkgrey')
+      plot(network_plot2, vertex.color = 'gold', vertex.size = 7, vertex.frame.color = 'white', 
+           layout = layout_with_fr, edge.color = 'darkgrey',
+           # edge.width = E(network_plot2)$weight/max(E(network_plot2)$weight)
+           edge.width = 1
+           )
     })
       
       # code snippet to get data into a downloadable form 
@@ -60,7 +65,8 @@ server <- function(input, output) {
           paste('output', ".csv", sep = "")
         },
         content = function(file) {
-          out_graph <- as_edgelist(graph = datasetInput()) # saves the edge list of the network, unweighted 
+          # out_graph <- as_edgelist(graph = datasetInput()) # saves the edge list of the network, unweighted 
+          out_graph <- get.data.frame(datasetInput())
           write.csv(out_graph, file, row.names = FALSE)
         }
       )

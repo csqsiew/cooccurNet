@@ -38,6 +38,8 @@ coocurNet <- function(filename) {
     }
     
     empty_m <- cooccur(empty_df, 1) # use cooccur function to make matrix from "verbal fluency-esque" data structure
+    empty_m[upper.tri(empty_m)] <- 0 # only keep the correct direction for directed graphs 
+    
     g <- graph_from_adjacency_matrix(empty_m, mode = 'undirected', weighted = TRUE, diag = FALSE)
     
     return(g)
