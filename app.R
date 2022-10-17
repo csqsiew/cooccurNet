@@ -3,6 +3,7 @@ source('coocurNet.R')
 source('cooccur.R')
 library(igraph)
 library(tidyverse)
+library(stringi)
   
 ui <- fluidPage(
     sidebarLayout(
