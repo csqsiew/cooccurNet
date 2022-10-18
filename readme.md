@@ -19,7 +19,7 @@ The application does not retain any user data.
 
 Assumes you have R and RStudio installed and know your way around it. 
 
-The following packages are needed: `shiny`, `igraph`, `tidyverse`, `corpus` - install via `install.packages('PackageName')`
+The following packages are needed: `shiny`, `igraph`, `tidyverse`, `corpus`, `stringi` - install via `install.packages('PackageName')`
 
 Download the files in this repository by clicking on 'Code', 'Download ZIP'.
 
@@ -33,13 +33,12 @@ A demo of this application can be found here: http://r-server.csqsiew.xyz/cooccu
 
 - Words that co-occur within a window size of 2 are connected (i.e., bigrams) 
 - Words that straddle different sentences are not considered as co-occurring.  
-- Currently, only a simple list of undirected, unweighted edges is created. Directed and weighted edges are planned for the future. 
+- `output.csv` is a directed edge list (from -> to) with frequency of occurrence (counts) in the 3rd column.  
 - See `lorem.txt` and `output.csv` for examples of input and output files.
-- The co-occurrence matrix algorithm was adapted from: https://github.com/AlexChristensen/SemNeT   
 
 ## final notes
 
-last updated: 15th August 2021 
+last updated: 18th Oct 2022 
 
 Please feel free to adapt for your own use. 
 
