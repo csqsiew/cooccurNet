@@ -1,9 +1,9 @@
 library(shiny)
 source('coocurNet.R')
-source('cooccur.R')
 library(igraph)
 library(tidyverse)
-library(stringi)
+# library(stringi)
+library(tokenizers)
   
 ui <- fluidPage(
     sidebarLayout(
@@ -21,7 +21,7 @@ ui <- fluidPage(
         tags$style(type="text/css",
                    ".shiny-output-error { visibility: hidden; }",
                    ".shiny-output-error:before { visibility: hidden; }"), # hide red error messages
-        headerPanel("Visualize the coocurrence network of any text!", windowTitle = "coocurNet"),
+        headerPanel("Visualize the coocurrence network of any text!", windowTitle = "cooccurNet"),
         tags$h6("Created by", tags$a(href="https://hello.csqsiew.xyz/", "CS"), align="left"),
         tags$hr(),
         fluidRow(
@@ -45,11 +45,10 @@ server <- function(input, output) {
           return(NULL) }
       
       network_plot <- coocurNet(inFile$datapath)
-      network_plot2 <- as.undirected(network_plot)
+      network_plot2 <- as.undirected(network_plot, mode = 'collapse') # remove the arrows for a nicer plot 
       par(mar=c(1,1,1,1))
       plot(network_plot2, vertex.color = 'gold', vertex.size = 7, vertex.frame.color = 'white', 
            layout = layout_with_fr, edge.color = 'darkgrey',
-           # edge.width = E(network_plot2)$weight/max(E(network_plot2)$weight)
            edge.width = 1
            )
     })
@@ -66,7 +65,6 @@ server <- function(input, output) {
           paste('output', ".csv", sep = "")
         },
         content = function(file) {
-          # out_graph <- as_edgelist(graph = datasetInput()) # saves the edge list of the network, unweighted 
           out_graph <- get.data.frame(datasetInput())
           write.csv(out_graph, file, row.names = FALSE)
         }

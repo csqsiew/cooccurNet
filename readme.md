@@ -19,7 +19,7 @@ The application does not retain any user data.
 
 Assumes you have R and RStudio installed and know your way around it. 
 
-The following packages are needed: `shiny`, `igraph`, `tidyverse`, `corpus`, `stringi` - install via `install.packages('PackageName')`
+The following packages are needed: `shiny`, `igraph`, `tidyverse`, `tokenizers` - install via `install.packages('PackageName')`
 
 Download the files in this repository by clicking on 'Code', 'Download ZIP'.
 
@@ -38,7 +38,7 @@ A demo of this application can be found here: http://r-server.csqsiew.xyz/cooccu
 
 ## final notes
 
-last updated: 18th Oct 2022 
+last updated: 12th April 2024 
 
 Please feel free to adapt for your own use. 
 
